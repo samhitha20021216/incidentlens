@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: incidentlens
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/incidentlens}
+    username: ${DB_USER:incidentlens}
+    password: ${DB_PASSWORD:incidentlens}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP:localhost:9092}
+    producer:
+      acks: all
+      properties:
+        linger.ms: 20
+    consumer:
+      auto-offset-reset: earliest
+      max-poll-records: 2000
+
+incidentlens:
+  engine:
+    clock: ${INCIDENTLENS_ENGINE_CLOCK:wall}
+  simulator:
+    enabled: ${INCIDENTLENS_SIMULATOR_ENABLED:false}
+    requests-per-second: ${INCIDENTLENS_SIMULATOR_RPS:15}
+  llm:
+    provider: ${LLM_PROVIDER:mock}
+    model: ${LLM_MODEL:claude-opus-5-5}
+    api-key: ${LLM_API_KEY:}
+    base-url: ${LLM_BASE_URL:https://api.openai.com}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
