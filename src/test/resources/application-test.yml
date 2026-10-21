@@ -1,0 +1,19 @@
+incidentlens:
+  engine:
+    clock: event
+    # Ticks are driven manually in tests so a fast replay is never split by a background tick.
+    tick-ms: 3600000
+  simulator:
+    enabled: false
+  llm:
+    provider: mock
+spring:
+  kafka:
+    consumer:
+      properties:
+        metadata.max.age.ms: 1000
+logging:
+  level:
+    org.apache.kafka: WARN
+    kafka: WARN
+    state.change.logger: WARN
