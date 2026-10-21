@@ -1,0 +1,5 @@
+package com.incidentlens.model;
+
+public enum Level {
+    DEBUG, INFO, WARN, ERROR
+}
